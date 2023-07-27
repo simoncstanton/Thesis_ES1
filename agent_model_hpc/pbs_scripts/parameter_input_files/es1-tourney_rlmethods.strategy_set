@@ -1,0 +1,16 @@
+{
+"actor_critic_1ed": "Actor-Critic, Sutton & Barto 1 edition",
+"actor_critic_1ed_eligibility_traces": "Actor-Critic, Sutton & Barto 1 edition, Eligibility Traces",
+"actor_critic_1ed_replacetrace": "Actor-Critic, Sutton & Barto 1 edition, Replacing Traces",
+"double_qlearning": "Double Q-Learning",
+"expected_sarsa": "Expected SARSA",
+"qlearning": "Q-Learning",
+"rlearning": "R-Learning",
+"sarsa": "SARSA",
+"sarsa_lambda": "SARSA Lambda",
+"sarsa_lambda_replacetrace": "SARSA Lambda, Replacing Traces",
+"watkins_naive_q_lambda": "Watkins Naive Q Lambda",
+"watkins_naive_q_lambda_replacetrace": "Watkins Naive Q Lambda Replacing Traces",
+"watkins_q_lambda": "Watkins Q Lambda",
+"watkins_q_lfa": "Watkins Q Linear Function Approximation "
+}

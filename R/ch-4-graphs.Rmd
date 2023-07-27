@@ -1,0 +1,116 @@
+---
+title: "ch 4 graphs"
+author: "Simon C Stanton"
+date: "2023-06-09"
+output: html_document
+
+params:
+  exp_id: 398741
+  sj_id: 0    # all
+  game: "g111"  # All RGS
+  tournament_set: "Game-Theoretic"
+  model: "Single-Model"
+  reward_upper_bound_game: 20000    #  experiment instance with 1k t
+  mc_upper_bound_game: 5000         #  experiment instance with 1k t
+  reward_upper_bound_rgs: 2880000   #  experiment instance with 1k t
+  mc_upper_bound_rgs: 720000        #  experiment instance with 1k t
+---
+
+```{r setup, include=FALSE}
+knitr::opts_chunk$set(echo = TRUE)
+library(ggplot2)
+library(dplyr)
+library(ggrepel)
+library(ggpubr)
+library(stringr)
+
+
+cbPalette <- c("#999999", "#E69F00", "#56B4E9", "#009E73", "#F0E442", "#0072B2", "#D55E00", "#CC79A7")
+```
+
+## R Markdown
+
+
+```{r, import-data, echo=FALSE, include=FALSE}
+
+path_to_data = "~/results/observations/tournament/"
+view_path = "/view/ep_o/view_"
+file_suffix_pre = "_sj_"
+file_suffix_post = "_model_g111_trial_NBS_summary.csv"  
+
+
+filename = paste(path_to_data, params$exp_id, view_path, params$exp_id, file_suffix_pre, params$sj_id, file_suffix_post, sep="")
+filename
+df_data <- read.csv(file= filename, header=TRUE, check.names=FALSE)
+df_data$Agent <- as.factor(df_data$Agent)
+summary(df_data)
+
+
+```
+
+## Alter data and plot
+
+```{r plot, echo=FALSE}
+
+min_max_norm <- function(y, x) {
+    (x - min(x)) / (y - min(x))
+  }
+
+df_data$Reward_scaled = min_max_norm(params$reward_upper_bound_game, df_data$Reward) 
+df_data$MC_scaled = min_max_norm(params$mc_upper_bound_game, df_data$MC)
+
+z <- df_data$Agent
+z2 <- str_pad(z, width = max(str_width(z)+2), side="both")
+
+
+options(repr.plot.width = 8, repr.plot.height =6)
+
+ggplot(df_data, aes(x=MC_scaled, y=Reward_scaled))  + 
+  geom_point(color = "black", size = 1) +
+  expand_limits(x=c(0,1), y=c(0,1)) +
+  scale_y_continuous(breaks = seq(0, 1, by = .1)) +
+  scale_x_continuous(breaks = seq(0, 1, by = .1)) +
+  theme_bw() +
+  theme(panel.grid.major = element_line(color = "lightgrey", linewidth = 0.2, linetype = 1),
+        panel.grid.minor = element_line(color = "lightgrey", linewidth = 0.2, linetype = 3)) +
+  labs(x="Mutual Cooperation") +
+  labs(y="Reward") +
+  theme(
+    axis.title.x = element_text(margin = margin(t = 11), size=10, hjust=0.5),
+    axis.title.y = element_text(margin = margin(r = 11), size=10),
+  ) +
+  geom_label_repel(aes(label = z2),
+                   size = 3.5,
+                   label.padding = .28,
+                   label.size = .2,
+                   label.r = .25,
+                   min.segment.length = unit(0, 'lines'),
+                   segment.size=.18,
+                   arrow = arrow(length = unit(0, "line"), type = "open"),
+                   max.overlaps = Inf,
+                   nudge_x=0.1, 
+                   nudge_y=0.15,
+
+                   
+  ) +
+  stat_cor(method="pearson", label.x = .845, label.y = 0, size=3) +
+  labs(title = paste(params$model, "Tournament Summary"),
+       subtitle = paste(params$tournament_set, "Algorithm Performance")
+       ) +
+  theme(plot.title = element_text(hjust = 0.5, size = 12),    # Center title position and size
+    plot.subtitle = element_text(hjust = 0.5, size=10),            # Center subtitle
+  ) +
+  annotate("text", x = 0.12, y = 0, label = paste("Model: ", params$game, " Exp_ID: ", params$exp_id, sep=""), cex=3) 
+  
+  
+    
+  
+  
+  
+
+ggsave(path=".", filename=paste(params$exp_id, "_single-model-reward-mc.png", sep=""), bg='white', width=8, height=6 ) 
+cor.test(df_data$MC_scaled, df_data$Reward_scaled)
+
+```
+
+Note that the `echo = FALSE` parameter was added to the code chunk to prevent printing of the R code that generated the plot.

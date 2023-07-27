@@ -1,0 +1,8 @@
+__pycache__/
+/results/
+/R/plots/
+/R/pdfs/
+/R/data/
+/R/scratch/
+/R/.RData
+/R/.Rhistory

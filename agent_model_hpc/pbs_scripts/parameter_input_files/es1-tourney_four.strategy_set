@@ -1,0 +1,14 @@
+{
+"alld": AllD",
+"bandit_noninc_softmax_ap_2ed": "Non-Incremental, Action Preferences, Softmax",
+"bandit_reinfcomp": "Reinforcement Comparison",
+"bandit_sav_inc": "Sample-Average Incremental",
+"bandit_wa_optimistic_greedy": "Weighted-Average, Optimistic, Greedy",
+"fictitiousplay": "Fictitious Play",
+"qlearning": "Q-Learning",
+"random": "Random",
+"rlearning": "R-Learning",
+"sarsa": "SARSA",
+"tft": "Tit-for-Tat",
+"watkins_q_lfa": "Watkins Q Linear Function Approximation "
+}

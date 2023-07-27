@@ -1,0 +1,19 @@
+{
+"bandit_inc_softmax_ap_2ed": "Incremental, Action Preferences, Softmax",
+"bandit_noninc_softmax_ap_2ed": "Non-Incremental, Action Preferences, Softmax",
+"bandit_pursuit_sav": "Pursuit, Sample-Average",
+"bandit_reinfcomp": "Reinforcement Comparison",
+"bandit_sav_inc": "Sample-Average Incremental",
+"bandit_sav_inc_optimistic_greedy": "Sample-Average, Incremental, Optimistic, Greedy",
+"bandit_sav_inc_softmax": "Sample-Average, Incremental, Softmax",
+"bandit_sav_noninc": "Sample-Average, Non-Incremental",
+"bandit_sav_noninc_softmax": "Sample-Average, Non-Incremental, Softmax",
+"bandit_sl_direct": "Supervised Learning, Direct",
+"bandit_sl_la_lri": "Supervised Learning, Learning Automata, Linear-Reward-Inaction",
+"bandit_sl_la_lrp": "Supervised Learning, Learning Automata, Linear-Reward-Penalty",
+"bandit_wa": "Weighted Average",
+"bandit_wa_optimistic_greedy": "Weighted-Average, Optimistic, Greedy",
+"bandit_wa_softmax": "Weighted Average, Softmax",
+"bandit_wa_softmax_ap_2ed": "Weighted Average, Softmax, Action Preferences",
+"bandit_wa_ucb": "Weighted Average, Upper Confidence Bounds"
+}

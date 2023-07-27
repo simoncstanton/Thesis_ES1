@@ -1,0 +1,8 @@
+{
+	"allc":   "Always Cooperate",
+	"alld":   "Always Defect",
+	"bully_naive": "Bully (Naive)",	
+	"fictitiousplay": "Fictitious Play",
+	"tft": "Tit-for-Tat",
+	"random":   "Random"
+}
